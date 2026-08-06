@@ -1,0 +1,16 @@
+#!/bin/bash
+
+git pull --rebase
+
+git status --short
+
+echo
+read -rp "Commit message: " msg
+
+[ -z "$msg" ] && exit 1
+
+git add .
+git commit -m "$msg" || exit 0
+git push
+
+echo "✓ Synced successfully."
