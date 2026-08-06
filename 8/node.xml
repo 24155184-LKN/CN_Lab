@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node unique_id="8" master_id="0" name="all_extra_info" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1785819882" ts_lastsave="1785820920">
+    <rich_text scale="h1">What is a Datagram?</rich_text>
+    <rich_text>
+--&gt; Self Contained
+--&gt; Independent packet 
+--&gt; It has </rich_text>
+    <rich_text underline="single">enough info to Route itself</rich_text>
+    <rich_text> (no reliance on prior exchange)
+--&gt; </rich_text>
+  </node>
+</cherrytree>

@@ -1,0 +1,16 @@
+1. Write a C program
+- Create an UDP socket
+- Client - Send an integer number to the server
+- Server - Reverse the number
+	 - Send it back to the Client
+
+2. Write a C program
+- Create an UDP socket
+- Client - Sends and integer array to the server
+- Server - Sort the array in ascending order
+	 - Send it back to the Client
+	 
+3. Write a C program
+- Create an UDP socket
+- Client - Sends few commands to the server.
+	eg. if client sends list command, server will send back the list of file names in the present working directory.

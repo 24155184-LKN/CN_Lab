@@ -1,0 +1,20 @@
+1. Write a C program
+
+	- Create a TCP Socket
+
+	- Client: Send message to Serevr
+	- Serevr: - Display -> the message
+									 -> IP of Client
+					 - Return same to client
+					-> Client will then display the same
+
+2. Write a C program
+
+	- Create a TCP Socket
+	
+	- 2 Client connects to the sever
+	- Client1:	Sends int numebr to the sever 
+	- Serevr:		fd it to the 2nd client
+	
+	- Client2:	Sends int numebr to the sever 
+	- Serevr:		fd it to the 1nd client

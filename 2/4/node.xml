@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node unique_id="4" master_id="0" name="CLient_node" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1785816831" ts_lastsave="1785820810">
+    <rich_text family="monospace">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;arpa/inet.h&gt;
+#include &lt;sys/socket.h&gt;
+
+#define PORT 8080
+
+int main() {
+    int sock_fd;
+    struct sockaddr_in server_addr;
+
+    // 1. Create socket
+    sock_fd = socket(AF_INET, SOCK_STREAM, 0);
+
+    // 2. Define server address
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_port = htons(PORT);
+    inet_pton(AF_INET, "127.0.0.1", &amp;server_addr.sin_addr);
+
+    // 3. Connect
+    connect(sock_fd, (struct sockaddr *)&amp;server_addr, sizeof(server_addr));
+
+    printf("Connected to server!\n");
+
+    close(sock_fd);
+    return 0;
+}</rich_text>
+    <rich_text>
+</rich_text>
+  </node>
+</cherrytree>

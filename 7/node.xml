@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node unique_id="7" master_id="0" name="UDP_Network" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1785817545" ts_lastsave="1785819932">
+    <rich_text>Definition:
+		- User-</rich_text>
+    <rich_text link="node 8">Datagram</rich_text>
+    <rich_text> Protocol
+		- transport-layer protocol defined in RFC 768
+		- Connectionless
+		- Unreliable
+				
+			 	|- handshake
+				|- guarantee of delivery
+	NO-----|
+				|- order
+				|- duplicate protection
+				
+UDP header is 8 bytes --&gt; fixed size
+(TCP is 20 so it is slower than UDP)
+(some more reasons:	- smaller header
+										- no handshake
+										- no acks)
+										
+FEATURE						UDP								TCP
+-----------------------------------------------------------------------------------------
+1. Connection-----Connectionless-----Connection Oriented
+2. Reliability-----------Unreliable------------------Reliable
+3. Ordering--------Not Guaranteed------------Guaranteed
+4. Speed-------------------Faster------------Comparitively Slower
+5. Header Size---------8 Bytes----------------------20 Bytes
+6. Use case----------Streaming, DNS-----File Transfer, web(HTTPS)
+								   VoIP, Gaming                    email
+
+When UDP is prefered over TCP?
+--&gt; Speed matters more than quality.
+--&gt; Small, Simple queries (DNS)
+--&gt; Broadcast/Multicast applications
+--&gt; Application that has its own reliability layer
+
+Server:
+	socket() -&gt; creates UDP socket
+	bind() -&gt; attaches IP + Port
+	recvfrom() -&gt; wait for client message
+	sendto() -&gt; reply
+	close()
+	
+Client:
+	socket() -&gt; Creates UDP socket
+	sendto() -&gt; sends message to server (no Connect() needed)
+	recvfrom() -&gt; gets response
+	close()
+</rich_text>
+  </node>
+</cherrytree>

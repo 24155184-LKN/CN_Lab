@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node unique_id="5" master_id="0" name="Assignment" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1785817128" ts_lastsave="1785817520">
+    <rich_text>1. Write a C program
+
+	- Create a TCP Socket
+
+	- Client: Send message to Serevr
+	- Serevr: - Display -&gt; the message
+									 -&gt; IP of Client
+					 - Return same to client
+					-&gt; Client will then display the same
+
+2. Write a C program
+
+	- Create a TCP Socket
+	
+	- 2 Client connects to the sever
+	- Client1:	Sends int numebr to the sever 
+	- Serevr:		fd it to the 2nd client
+	
+	- Client2:	Sends int numebr to the sever 
+	- Serevr:		fd it to the 1nd client
+	
+</rich_text>
+  </node>
+</cherrytree>
