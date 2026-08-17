@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node unique_id="1" master_id="0" name="Question_For_LAB_5" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1786421465" ts_lastsave="1786422183">
+    <rich_text>1. Write a C program to:
+	- Create a TCP Socket.
+	
+	Client: Send TWO SORTED Array to the Server.
+	Server: Merge the two array, and return back to the Client.
+	
+	Goto: Program5_1
+	
+2. Write a C program to:
+	- Create a TCP Socket.
+	
+	Client: Send TWO INTEGER and ONE SYMBOL (+, -, *, /).
+	Server: It will conduct the mathematical operation on the two number and return the result to the client.
+	
+	Goto: Program5_2
+	
+3. Write a C program to:
+	- Create a TCP Socket.
+	
+	Client: Send a DOMAIN NAME to the Server.
+	Server: Returns the IP of that domain back to the Client.
+	
+	Goto: Program5_3
+	
+4. Write a C program to:
+	- Create a TCP Socket.
+	
+	Client: Send the LIST COMMAND to the Server.
+	Server: It will return back the list of file names in the present working directory to the Client.
+	
+	Client: Send ‘ retr &lt;file_name&gt; ’
+	Server: Sends back the content of the particular file.
+
+	Goto: Program5_4</rich_text>
+  </node>
+</cherrytree>

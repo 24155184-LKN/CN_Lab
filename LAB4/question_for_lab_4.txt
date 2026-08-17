@@ -4,9 +4,9 @@
 
 	- Client: Send message to Serevr
 	- Serevr: - Display -> the message
-									 -> IP of Client
-					 - Return same to client
-					-> Client will then display the same
+			    -> IP of Client
+		  - Return same to client
+			    -> Client will then display the same
 
 2. Write a C program
 
