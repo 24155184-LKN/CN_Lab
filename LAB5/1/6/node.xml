@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cherrytree>
-  <node unique_id="6" master_id="0" name="Program5_4" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1786422296" ts_lastsave="1786422296"/>
+  <node unique_id="6" master_id="0" name="Program5_4" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1786422296" ts_lastsave="1787030307">
+    <rich_text>4. Write a C program to:
+	- Create a TCP Socket.
+	
+	Client: Send the LIST COMMAND to the Server.
+	Server: It will return back the list of file names in the present working directory to the Client.
+	
+	Client: Send ‘ retr &lt;file_name&gt; ’
+	Server: Sends back the content of the particular file.
+	
+GOTO - </rich_text>
+    <rich_text link="node 19">Client</rich_text>
+    <rich_text>
+			   </rich_text>
+    <rich_text link="node 18">Server</rich_text>
+  </node>
 </cherrytree>

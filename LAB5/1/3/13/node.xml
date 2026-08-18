@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node unique_id="13" master_id="0" name="TCP_Client.c" prog_lang="c" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1787029794" ts_lastsave="1787030090">
+    <rich_text>// Send TWO INTEGER and ONE SYMBOL to the Server
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;arpa/inet.h&gt;
+
+#define PORT 8081
+
+int main() {
+    int sock;
+    struct sockaddr_in server_addr;
+
+    int a, b;
+    char op;
+    float result;
+
+    // Creating SOCKET
+    sock = socket(AF_INET, SOCK_STREAM, 0);
+
+    // Server address
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_port = htons(PORT);
+    server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+
+    // Connect
+    connect(sock, (struct sockaddr *)&amp;server_addr,
+            sizeof(server_addr));
+
+    printf("Connected to Server!\n");
+
+    // Input
+    printf("Enter first integer: ");
+    scanf("%d", &amp;a);
+
+    printf("Enter second integer: ");
+    scanf("%d", &amp;b);
+
+    printf("Enter operator (+, -, *, /): ");
+    scanf(" %c", &amp;op);
+
+    // Send data
+    send(sock, &amp;a, sizeof(a), 0);
+    send(sock, &amp;b, sizeof(b), 0);
+    send(sock, &amp;op, sizeof(op), 0);
+
+    // Receive result
+    recv(sock, &amp;result, sizeof(result), 0);
+
+    printf("Result = %.2f\n", result);
+
+    close(sock);
+
+    return 0;
+}
+</rich_text>
+  </node>
+</cherrytree>

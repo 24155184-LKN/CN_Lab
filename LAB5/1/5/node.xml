@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cherrytree>
-  <node unique_id="5" master_id="0" name="Program5_3" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1786422291" ts_lastsave="1786422291"/>
+  <node unique_id="5" master_id="0" name="Program5_3" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1786422291" ts_lastsave="1787030248">
+    <rich_text>3. Write a C program to:
+	- Create a TCP Socket.
+	
+	</rich_text>
+    <rich_text link="node 17">Client</rich_text>
+    <rich_text>: Send a DOMAIN NAME to the Server.
+	
+	</rich_text>
+    <rich_text link="node 15">Server</rich_text>
+    <rich_text>: Returns the IP of that domain back to the Client.</rich_text>
+  </node>
 </cherrytree>

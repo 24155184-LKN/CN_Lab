@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node unique_id="19" master_id="0" name="TCP_Client.c" prog_lang="c" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1787030062" ts_lastsave="1787030115">
+    <rich_text>// Send LIST command or retr &lt;file_name&gt; to Server
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;arpa/inet.h&gt;
+
+#define PORT 8083
+#define MAX 1024
+
+int main() {
+    int sock;
+    struct sockaddr_in server_addr;
+
+    char command[MAX];
+    char buffer[MAX];
+
+    // Creating SOCKET
+    sock = socket(AF_INET, SOCK_STREAM, 0);
+
+    // Server address
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_port = htons(PORT);
+    server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+
+    // Connect
+    connect(sock, (struct sockaddr *)&amp;server_addr,
+            sizeof(server_addr));
+
+    printf("Connected to Server!\n");
+
+    // Send LIST command
+    printf("Enter command (LIST / retr &lt;file_name&gt;): ");
+    fgets(command, sizeof(command), stdin);
+
+    // Remove newline
+    command[strcspn(command, "\n")] = '\0';
+
+    send(sock, command, strlen(command) + 1, 0);
+
+    // Receive response
+    printf("\nServer Response:\n");
+
+    int bytes;
+
+    while ((bytes = recv(sock, buffer,
+                         sizeof(buffer) - 1, 0)) &gt; 0) {
+
+        buffer[bytes] = '\0';
+
+        printf("%s", buffer);
+
+        // Stop after end marker
+        if (strstr(buffer, "---END OF FILE---") != NULL)
+            break;
+
+        // LIST response normally arrives as one message
+        if (strcmp(command, "LIST") == 0)
+            break;
+    }
+
+    printf("\n");
+
+    close(sock);
+
+    return 0;
+}
+</rich_text>
+  </node>
+</cherrytree>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node unique_id="18" master_id="0" name="TCP_Server.c" prog_lang="c" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1787030053" ts_lastsave="1787030107">
+    <rich_text>// LIST: Send file names in present working directory
+// retr &lt;file_name&gt;: Send contents of requested file
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;arpa/inet.h&gt;
+#include &lt;dirent.h&gt;
+
+#define PORT 8083
+#define MAX 1024
+
+int main() {
+    int server_fd, client_fd;
+    struct sockaddr_in server_addr, client_addr;
+    socklen_t addr_size = sizeof(client_addr);
+
+    char command[MAX];
+    char buffer[MAX];
+
+    // Creating SOCKET
+    server_fd = socket(AF_INET, SOCK_STREAM, 0);
+
+    // Server address
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = INADDR_ANY;
+    server_addr.sin_port = htons(PORT);
+
+    // Bind
+    bind(server_fd, (struct sockaddr *)&amp;server_addr,
+         sizeof(server_addr));
+
+    // Listen
+    listen(server_fd, 5);
+
+    printf("Server waiting for connection...\n");
+
+    // Accept Client
+    client_fd = accept(server_fd,
+                       (struct sockaddr *)&amp;client_addr,
+                       &amp;addr_size);
+
+    printf("Client Connected!\n");
+
+    // Receive command
+    memset(command, 0, sizeof(command));
+    recv(client_fd, command, sizeof(command) - 1, 0);
+
+    // LIST command
+    if (strcmp(command, "LIST") == 0) {
+
+        DIR *dir;
+        struct dirent *entry;
+
+        dir = opendir(".");
+
+        if (dir == NULL) {
+            strcpy(buffer, "Unable to open directory.");
+            send(client_fd, buffer, strlen(buffer) + 1, 0);
+        } else {
+
+            memset(buffer, 0, sizeof(buffer));
+
+            while ((entry = readdir(dir)) != NULL) {
+
+                // Ignore . and ..
+                if (strcmp(entry-&gt;d_name, ".") != 0 &amp;&amp;
+                    strcmp(entry-&gt;d_name, "..") != 0) {
+
+                    strcat(buffer, entry-&gt;d_name);
+                    strcat(buffer, "\n");
+                }
+            }
+
+            closedir(dir);
+
+            send(client_fd, buffer, strlen(buffer) + 1, 0);
+            printf("Directory list sent to Client.\n");
+        }
+    }
+
+    // RETR command
+    else if (strncmp(command, "retr ", 5) == 0) {
+
+        char filename[MAX];
+
+        strcpy(filename, command + 5);
+
+        FILE *fp = fopen(filename, "r");
+
+        if (fp == NULL) {
+            strcpy(buffer, "ERROR: File could not be opened.");
+            send(client_fd, buffer, strlen(buffer) + 1, 0);
+        } else {
+
+            while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+                send(client_fd, buffer, strlen(buffer), 0);
+            }
+
+            // End marker
+            strcpy(buffer, "\n---END OF FILE---\n");
+            send(client_fd, buffer, strlen(buffer), 0);
+
+            fclose(fp);
+
+            printf("File content sent to Client.\n");
+        }
+    }
+
+    else {
+        strcpy(buffer, "Invalid command.");
+        send(client_fd, buffer, strlen(buffer) + 1, 0);
+    }
+
+    close(client_fd);
+    close(server_fd);
+
+    return 0;
+}
+</rich_text>
+  </node>
+</cherrytree>

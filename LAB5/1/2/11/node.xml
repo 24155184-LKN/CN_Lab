@@ -1,4 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cherrytree>
-  <node unique_id="11" master_id="0" name="TCP_Server.c" prog_lang="c" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1786422634" ts_lastsave="1786422636"/>
+  <node unique_id="11" master_id="0" name="TCP_Server.c" prog_lang="c" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1786422634" ts_lastsave="1786992378">
+    <rich_text>// Receive TWO SORTED Arrays from Client
+// Merge them and send the result back
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;arpa/inet.h&gt;
+
+#define PORT 8080
+#define MAX 100
+
+int main() {
+	int server_fd, client_fd;
+	struct sockaddr_in server_addr, client_addr;
+	socklen_t addr_size = sizeof(client_addr);
+	
+	int n1, n2;
+	int a[MAX], b[MAX], merged[MAX * 2];
+	
+	// Creating a SOCKET
+	server_fd = socket(AF_INET, SOCK_STREAM, 0);
+	
+	// Server address
+	server_addr.sin_family = AF_INET;
+	server_addr.sin_addr.s_addr = INADDR_ANY;
+	server_addr.sin_port = htons(PORT);
+	
+	// Bind
+	bind(server_fd, (struct sockaddr *)&amp;server_addr,
+					sizeof(server_addr));
+	
+	// Listen
+	listen(server_fd, 5);
+	
+	printf("Server waiting for connection...\n");
+	
+	// Accept Client
+	client_fd = accept(server_fd,
+					(struct sockaddr *)&amp;client_addr,
+					&amp;addr_size);
+	
+	printf("Client Connected!\n");
+
+	// Receive sizes
+	recv(client_fd, &amp;n1, sizeof(n1), 0);
+	recv(client_fd, &amp;n2, sizeof(n2), 0);
+
+	// Receive arrays
+	recv(client_fd, a, n1 * sizeof(int), 0);
+	recv(client_fd, b, n2 * sizeof(int), 0);
+	
+	// Merge
+	int i = 0, j = 0, k = 0;
+	
+	while (i &lt; n1 &amp;&amp; j &lt; n2) {
+		if (a[i] &lt; b[j])
+			merged[k++] = a[i++];
+		else
+			merged[k++] = b[j++];
+	}
+	
+	while (i &lt; n1)
+	merged[k++] = a[i++];
+	
+	while (j &lt; n2)
+		merged[k++] = b[j++];
+	
+	// Send size
+	int total = n1 + n2;
+	send(client_fd, &amp;total, sizeof(total), 0);
+
+	// Send merged array
+	send(client_fd, merged, total * sizeof(int), 0);
+	
+	printf("Merged array sent to Client.\n");
+	
+	close(client_fd);
+	close(server_fd);
+	
+	return 0;
+}
+</rich_text>
+  </node>
 </cherrytree>

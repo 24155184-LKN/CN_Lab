@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cherrytree>
-  <node unique_id="3" master_id="0" name="Program5_2" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1786422263" ts_lastsave="1786422271"/>
+  <node unique_id="3" master_id="0" name="Program5_2" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1786422263" ts_lastsave="1787030201">
+    <rich_text>2. Write a C program to:
+	- Create a TCP Socket.
+	
+	</rich_text>
+    <rich_text link="node 13">Client</rich_text>
+    <rich_text>: Send TWO INTEGER and ONE SYMBOL (+, -, *, /).
+	
+	</rich_text>
+    <rich_text link="node 12">Server</rich_text>
+    <rich_text>: It will conduct the mathematical operation on the two number and return the result to the client.</rich_text>
+  </node>
 </cherrytree>
