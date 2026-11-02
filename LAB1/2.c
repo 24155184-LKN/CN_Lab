@@ -14,21 +14,21 @@ struct dob {
 typedef struct Student {
     int roll;
     char name[20];
-    int cgpa;
+    float cgpa;
     struct dob age;
 } stu;
 
 void printByValue(stu s) {
     printf("Roll: %d\n", s.roll);
     printf("Name: %s\n", s.name);
-    printf("CGPA: %d\n", s.cgpa);
+    printf("CGPA: %.2f\n", s.cgpa);
     printf("DOB: %d/%d/%d\n", s.age.day, s.age.month, s.age.year);
 }
 
 void printByAddress(stu *s) {
     printf("Roll: %d\n", s->roll);
     printf("Name: %s\n", s->name);
-    printf("CGPA: %d\n", s->cgpa);
+    printf("CGPA: %.2f\n", s->cgpa);
     printf("DOB: %d/%d/%d\n", s->age.day, s->age.month, s->age.year);
 }
 
@@ -42,7 +42,7 @@ int main(){
     scanf("%s", s1.name);
 
     printf("Enter CGPA: ");
-    scanf("%d", &s1.cgpa);
+    scanf("%f", &s1.cgpa);
 
     printf("Enter date of birth (dd/mm/yyyy): ");
     scanf("%d/%d/%d",&s1.age.day, &s1.age.month, &s1.age.year);
@@ -55,4 +55,3 @@ int main(){
 
     return 0;
 }
-
